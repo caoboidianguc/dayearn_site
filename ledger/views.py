@@ -6,10 +6,10 @@ from django.views import View
 # Create your views here.
 
 class AllEmployee(LoginRequiredMixin, View):
-    template = ''
+    template = 'ledger/index.html'
     def get(self,request):
         employee = Technician.objects.all()
-        cont = {'employee': employee}
+        cont = {'employees': employee}
         return render(request, self.template, cont)
     
 class AllServices(LoginRequiredMixin, View):

@@ -2,6 +2,10 @@
 
 
 {% block content %}
-    
+    {% if employees %}
+    {% for employee in employees %}
+    <div class='box'>{{ employee.name }}</div>
+    {% endfor %}
+    {% endif %}
 {% endblock content %}
     
