@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif] -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dayearn</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        {% comment %} Bulma CSS {% endcomment %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
+
+        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <a href="{% url 'chatchit:dashboard' %}">
+        <section class="hero is-small is-success mb-4">
+            <div class="hero-body">
+                <h1 class="title is-1">Good Day(^_^)</h1>
+                <h5 class="title is-6">Dayearn</h5>
+                
+            </div>
+        </section>
+    </a>
+        <div class="container">
+            <div class="columns">
+                {% block content %}
+            
+                {% endblock content %}
+            </div>
+        </div>
+        <script src="" async defer></script>
+    </body>
+
+</html>
