@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form | crispy }}
+    </table>
+    <input type="submit" value="Add">
+    <input type="submit" onclick="window.location='{% url 'ledger:index' %}'; return false; " value="Cancel">
+</form>    
+{% endblock content %}

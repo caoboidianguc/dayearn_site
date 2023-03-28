@@ -1,6 +1,7 @@
 <!-- 
 python3 -m venv venv --prompt=dayearn
-source ./venv/bin/activate
+Mac source ./venv/bin/activate
+Win venv\Scripts\activate
 python -m pip install django
 django-admin startproject -->
 
