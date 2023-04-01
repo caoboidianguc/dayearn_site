@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 
 
+{% block headding %}
+<h1 class="title">Dayearn</h1>
+{% endblock headding %}
+    
 {% block content %}
+    
     {% if employees %}
     {% for employee in employees %}
     <div class='box'>{{ employee.name }}</div>
     {% endfor %}
     {% endif %}
+
+    <a href="{% url 'password_change' %}">Change Password</a>
 {% endblock content %}
     

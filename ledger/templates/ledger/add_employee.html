@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+
+
+{% block headding %}
+<h2 class="title">
+    Add Employee
+  </h2>
+{% endblock headding %}
+    
 {% block content %}
 <form action="" method="post">
     {% csrf_token %}

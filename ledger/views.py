@@ -8,12 +8,12 @@ from django.urls import reverse_lazy
 
 
 
-# Create your views here.
+
 
 class AllEmployee(LoginRequiredMixin, ListView):
     template = 'ledger/index.html'
     def get(self,request):
-        employee = Technician.objects.all()
+        employee = Technician.objects.filter(owner=request.user)
         cont = {'employees': employee}
         return render(request, self.template, cont)
     
@@ -21,7 +21,7 @@ class AllServices(LoginRequiredMixin, ListView):
     # need a template for a list of all services
     template = ''
     def get(self, request):
-        serv = Service.objects.all()
+        serv = Service.objects.filter(owner=request.user)
         cont = {'dvu': serv}
         return render(request,self.template,cont)
     

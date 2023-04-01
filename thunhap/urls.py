@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ledger.urls')),
     re_path('accounts/', include("django.contrib.auth.urls")),
+    
 ]
