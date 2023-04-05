@@ -6,7 +6,11 @@
 {% endblock headding %}
     
 {% block content %}
-    
+{% if not user.is_authenticated %}
+<div>
+    <a href="{% url 'ledger:register' %}">Register Account</a>
+</div>
+{% endif %}
     {% if employees %}
     {% for employee in employees %}
     <div class='box'>{{ employee.name }}</div>

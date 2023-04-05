@@ -45,11 +45,11 @@
                         <a class="navbar-item is-active" href="{% url 'ledger:index' %}">
                           Home
                         </a>
-                        <a class="navbar-item">
-                          Examples
+                        <a class="navbar-item" href="{% url 'ledger:add_employee' %}">
+                          Add Employee
                         </a>
-                        <a class="navbar-item">
-                          Documentation
+                        <a class="navbar-item" href="{% url 'ledger:services' %}">
+                          Services
                         </a>
                         <span class="navbar-item">
                             {% if user.is_authenticated %}

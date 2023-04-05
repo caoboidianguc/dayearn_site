@@ -3,9 +3,9 @@ from .models import Technician, Khach, Service
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from django.views import View
-from .forms import ClientForm, TechForm, ServiceForm
+from .forms import ClientForm, TechForm, ServiceForm, TaiKhoanCreationForm
 from django.urls import reverse_lazy
-
+from django.contrib.auth import login
 
 
 
@@ -18,12 +18,12 @@ class AllEmployee(LoginRequiredMixin, ListView):
         return render(request, self.template, cont)
     
 class AllServices(LoginRequiredMixin, ListView):
-    # need a template for a list of all services
-    template = ''
+    
+    template = 'ledger/list_services.html'
     def get(self, request):
         serv = Service.objects.filter(owner=request.user)
         cont = {'dvu': serv}
-        return render(request,self.template,cont)
+        return render(request, self.template, cont)
     
 class EmpCreate(LoginRequiredMixin, View):
     template = 'ledger/add_employee.html'
@@ -42,3 +42,40 @@ class EmpCreate(LoginRequiredMixin, View):
         emp.save()
         form.save_m2m
         return redirect(self.success_url)
+    
+    
+class TaoTaiKhoan(View):
+    template = "ledger/user_form.html"
+    success_url = reverse_lazy('ledger:index')
+    
+    def get(self, request):
+        form = TaiKhoanCreationForm()
+        cont = {'form': form }
+        return render(request, self.template, cont)
+    def post(self, request):
+        form = TaiKhoanCreationForm(request.POST)
+        if form.is_valid():
+            ten = form.save()
+            login(request, ten)
+            return redirect(self.success_url)
+
+class AddService(LoginRequiredMixin, View):
+    template = "ledger/service_form.html"
+    success_url = reverse_lazy("ledger:services")
+    def get(self, request):
+        form = ServiceForm(time_serv="0:45:00")
+        cont = {'form': form}
+        return render(request, self.template, cont)
+    def post(self, request):
+        form = ServiceForm(request.POST)
+        if not form.is_valid():
+            cont = {'form': form}
+            return render(request, self.template, cont)
+        form.save()
+        return redirect(self.success_url)
+    
+class AddClient(View):
+    pass
+
+
+

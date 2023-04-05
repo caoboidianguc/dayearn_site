@@ -25,15 +25,23 @@ class Khach(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     technician = models.ForeignKey(Technician, on_delete=models.CASCADE, null=True)
     diem = models.PositiveIntegerField()
-    ngay = models.DateTimeField(auto_now_add=True)
+    # ngay - inital first time come 
+    ngay = models.DateTimeField(editable=False,auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     desc = models.TextField(max_length=250,blank=True)
+    services = models.ForeignKey("Service", on_delete=models.DO_NOTHING, null=True)
     
     
     def __str__(self) -> str:
-        return self.name
+        return self.full_name
+    def save(self, *args, **kwargs):
+        self.diem += 1
+        super().save(*args,**kwargs)
     
 class Service(models.Model):
     dichVu = models.CharField(max_length=30)
     gia = models.FloatField()
-    khach = models.ForeignKey(Khach, on_delete=models.DO_NOTHING, null=True)
+    time_serv = models.DurationField()
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.dichVu
