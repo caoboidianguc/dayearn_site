@@ -18,7 +18,7 @@
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <a href="#">
+        <a href="{% url 'ledger:index' %}">
         <section class="hero is-small is-success mb-4">
             <div class="hero-body">
                 <h1 class="title is-1">Good Day(^_^) {{ user.username | default:'You'}} </h1>
@@ -29,7 +29,7 @@
                 <nav class="navbar">
                   <div class="container">
                     <div class="navbar-brand">
-                      <a class="navbar-item">
+                      <a class="navbar-item" href="{% url 'ledger:index' %}">
                         {% block headding %}
                         
                         {% endblock headding %}
@@ -42,7 +42,7 @@
                     </div>
                     <div id="navbarMenuHeroB" class="navbar-menu">
                       <div class="navbar-end">
-                        <a class="navbar-item is-active" href="{% url 'ledger:index' %}">
+                        <a class="navbar-item is-active" href="{% url 'ledger:home' %}">
                           Home
                         </a>
                         <a class="navbar-item" href="{% url 'ledger:add_employee' %}">
@@ -77,5 +77,15 @@
         </div>
         <script src="" async defer></script>
     </body>
-
+    <footer class="footer">
+      <div class="content has-text-centered">
+        
+        <p>
+          {% block footer %}
+            
+          {% endblock footer %}
+        </p>
+        Copyright @ Hibiscus@hotmail.com.vn
+      </div>
+    </footer>
 </html>

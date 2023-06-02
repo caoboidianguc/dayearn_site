@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 
 
@@ -9,7 +10,7 @@ from django.conf import settings
 class Technician(models.Model):
     name = models.CharField(max_length=25)
     phone = models.CharField(max_length=12)
-    dskhach = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Khach', related_name='tech_client')
+    dskhach = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Khach', related_name='tech')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     
     
@@ -45,3 +46,19 @@ class Service(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     def __str__(self) -> str:
         return self.dichVu
+    
+    
+class DatHen(models.Model):
+    template = "ledger:dathen_detail"
+    
+    khach = models.ForeignKey(Khach, on_delete=models.CASCADE, null=True)
+    ngayhen = models.DateField()
+    vaoLuc = models.TimeField()
+    services = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
+    
+    def __str__(self) -> str:
+        return self.ngayhen.day
+    
+    def get_absolute_url(self):
+        return reverse(self.template, args={"pk": self.pk})
+    

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Technician, Khach, Service
+from .models import Technician, Khach, Service, DatHen
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from django.views import View
@@ -27,7 +27,7 @@ class AllServices(LoginRequiredMixin, ListView):
     
 class EmpCreate(LoginRequiredMixin, View):
     template = 'ledger/add_employee.html'
-    success_url = reverse_lazy('ledger:index')
+    success_url = reverse_lazy('ledger:home')
     def get(self,request):
         form = TechForm()
         contx = {'form': form}
@@ -46,7 +46,7 @@ class EmpCreate(LoginRequiredMixin, View):
     
 class TaoTaiKhoan(View):
     template = "ledger/user_form.html"
-    success_url = reverse_lazy('ledger:index')
+    success_url = reverse_lazy('ledger:home')
     
     def get(self, request):
         form = TaiKhoanCreationForm()
@@ -63,7 +63,7 @@ class AddService(LoginRequiredMixin, View):
     template = "ledger/service_form.html"
     success_url = reverse_lazy("ledger:services")
     def get(self, request):
-        form = ServiceForm(time_serv="0:45:00")
+        form = ServiceForm()
         cont = {'form': form}
         return render(request, self.template, cont)
     def post(self, request):
@@ -71,11 +71,23 @@ class AddService(LoginRequiredMixin, View):
         if not form.is_valid():
             cont = {'form': form}
             return render(request, self.template, cont)
-        form.save()
+        ser = form.save(commit=False)
+        ser.owner = self.request.user
+        ser.save()
+        form.save_m2m
         return redirect(self.success_url)
     
-class AddClient(View):
+class CustomerVisit(View):
+    template = "thunhap/home.html"
+    def get(self, request):
+        return render(request, self.template)
+    def post(self, request):
+        pass
+
+
+class CustomerAppointe(LoginRequiredMixin, View):
     pass
 
-
+class DatHenChiTiet():
+    pass
 

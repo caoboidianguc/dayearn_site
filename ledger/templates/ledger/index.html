@@ -16,7 +16,19 @@
     <div class='box'>{{ employee.name }}</div>
     {% endfor %}
     {% endif %}
-
-    <a href="{% url 'password_change' %}">Change Password</a>
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Well relaxation
+      </h1>
+      <h3>get in -></h3>
+    </div>
+  </div>
+</section>
 {% endblock content %}
     
+{% block footer %}
+    <strong>Quang</strong> here to <a href="{% url 'password_change' %}">Change Password</a>.
+{% endblock footer %}
+        

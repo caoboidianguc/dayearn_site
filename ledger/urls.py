@@ -5,9 +5,12 @@ from django.contrib.auth import views as xem
 
 app_name = 'ledger'
 urlpatterns = [
-    path('', views.AllEmployee.as_view(), name="index"),
-    path('add_employee/', views.EmpCreate.as_view(), name="add_employee"),
-    path('register/', views.TaoTaiKhoan.as_view(), name="register"),
-    path('services/', views.AllServices.as_view(), name="services"),
-    path('add_services/', views.AddService.as_view(), name="add_service"),
+    path('', views.CustomerVisit.as_view(), name="index"),
+    path('ledger/', views.AllEmployee.as_view(), name="home"),
+    path('ledger/add_employee/', views.EmpCreate.as_view(), name="add_employee"),
+    path('ledger/register/', views.TaoTaiKhoan.as_view(), name="register"),
+    path('ledger/services/', views.AllServices.as_view(), name="services"),
+    path('ledger/services/add_services/', views.AddService.as_view(), name="add_service"),
+    # path('dathen/<int:pk>/detail/', views.DatHenChiTiet.as_view(), name="dathen_detail"),
+    
 ]
