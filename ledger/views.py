@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Technician, Khach, Service, DatHen
+from .models import Technician, Khach, Service
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from django.views import View
@@ -85,7 +85,7 @@ class CustomerVisit(View):
         pass
 
 
-class CustomerAppointe(LoginRequiredMixin, View):
+class CustomerAppointe(View):
     pass
 
 class DatHenChiTiet():

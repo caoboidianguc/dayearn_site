@@ -10,8 +10,9 @@ from django.urls import reverse
 class Technician(models.Model):
     name = models.CharField(max_length=25)
     phone = models.CharField(max_length=12)
-    dskhach = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Khach', related_name='tech')
+    # dskhach = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Khach', related_name='tech')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    clients = models.ForeignKey("Khach", on_delete=models.CASCADE, null=True, related_name='client')
     
     
     def __str__(self) -> str:
@@ -25,7 +26,7 @@ class Khach(models.Model):
     email = models.EmailField(max_length=35, null=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     technician = models.ForeignKey(Technician, on_delete=models.CASCADE, null=True)
-    diem = models.PositiveIntegerField()
+    diem = models.PositiveIntegerField(default=0)
     # ngay - inital first time come 
     ngay = models.DateTimeField(editable=False,auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -48,17 +49,4 @@ class Service(models.Model):
         return self.dichVu
     
     
-class DatHen(models.Model):
-    template = "ledger:dathen_detail"
-    
-    khach = models.ForeignKey(Khach, on_delete=models.CASCADE, null=True)
-    ngayhen = models.DateField()
-    vaoLuc = models.TimeField()
-    services = models.ForeignKey(Service, on_delete=models.CASCADE, null=True)
-    
-    def __str__(self) -> str:
-        return self.ngayhen.day
-    
-    def get_absolute_url(self):
-        return reverse(self.template, args={"pk": self.pk})
     

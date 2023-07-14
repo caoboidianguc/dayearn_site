@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATICFILES_FINDERS = (
+    'djangobower.finders.BowerFinder',
+)
+
+BOWER_COMPONENTS_ROOT = '/PROJECT_ROOT/components/'
 
 # Application definition
 
@@ -41,6 +46,8 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'crispy_forms',
     'schedule',
+    'rest_framework',
+    'djangobower',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -135,3 +142,8 @@ LOGIN_REDIRECT_URL = "ledger:index"
 LOGOUT_REDIRECT_URL = "ledger:index"
 
 
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'jquery-ui',
+    'bootstrap'
+)
