@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block headding %}
+    <h1 class='title'>Schedule</h1>
+{% endblock headding %}
+
+
+{% block content %}
+    {% if khachHen %}
+    {% for hen in khachHen %}
+        <div class='is-boxed'>{{ hen.khach }} </div>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock content %}
+
+
+
+{% block footer %}
+    <strong>Contact Us somewhere</strong>
+{% endblock footer %}
+ 

@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'schedule',
     'rest_framework',
     'djangobower',
+    'api.apps.ApiConfig',
+    'datHen.apps.DathenConfig',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 

@@ -4,3 +4,5 @@ django
 django-crispy-forms
 crispy-bootstrap5
 django-scheduler
+djangorestframework
+django-bower
