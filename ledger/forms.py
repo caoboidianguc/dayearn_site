@@ -12,14 +12,12 @@ class TechForm(forms.ModelForm):
 
 
 class ClientForm(forms.ModelForm):
-    """Form definition for Client."""
-
+    email = forms.CharField(required=False)
     class Meta:
         """Meta definition for Clientform."""
         model = Khach
         fields = ['full_name', 'phone', 'email', 'services']
         
-    # https://stackoverflow.com/questions/38601/using-django-time-date-widgets-in-custom-form
 
     
 class ServiceForm(forms.ModelForm):

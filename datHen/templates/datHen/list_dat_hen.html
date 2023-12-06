@@ -9,7 +9,7 @@
 {% block content %}
     {% if khachHen %}
     {% for hen in khachHen %}
-        <div class='is-boxed'>{{ hen }} </div>
+        <div class='is-boxed'>{{ hen.khach }} {{ hen.ngayhen }} {{ hen.vaoLuc}} </div>
         {% endfor %}
 
     {% endif %}

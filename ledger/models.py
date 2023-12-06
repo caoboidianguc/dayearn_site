@@ -23,7 +23,7 @@ class Khach(models.Model):
     full_name = models.CharField(max_length=25)
     phone = models.CharField(max_length=12)
     email = models.EmailField(max_length=35, null=True, blank=True)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
+    # owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     technician = models.ForeignKey(Technician, on_delete=models.CASCADE, null=True, blank=True)
     diem = models.PositiveIntegerField(default=0)
     ngay = models.DateTimeField(editable=False,auto_now_add=True)
