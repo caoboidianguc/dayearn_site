@@ -2,14 +2,14 @@
 
 
 {% block headding %}
-    <h1 class='title'>Schedule</h1>
+    <h1 class='title'>Clients Scheduled</h1>
 {% endblock headding %}
 
 
 {% block content %}
     {% if khachHen %}
     {% for hen in khachHen %}
-        <div class='is-boxed'>{{ hen.khach }} </div>
+        <div class='is-boxed'>{{ hen }} </div>
         {% endfor %}
 
     {% endif %}

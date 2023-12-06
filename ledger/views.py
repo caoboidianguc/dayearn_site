@@ -85,9 +85,3 @@ class CustomerVisit(View):
         pass
 
 
-class CustomerAppointe(View):
-    pass
-
-class DatHenChiTiet():
-    pass
-

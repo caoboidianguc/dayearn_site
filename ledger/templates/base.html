@@ -14,8 +14,16 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
         <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
-
-        <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script type="text/javascript" 
+    src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">  
+    </script>
+     <script>
+          $('.navbar-menu .navbar-item').click(function(){
+            $('.navbar-menu .navbar-item').removeClass('.navbar-item is-active');
+            $this.addClass('is-active');
+          })
+          
+          </script>
     </head>
     <body>
         <a href="{% url 'ledger:index' %}">
@@ -42,7 +50,7 @@
                     </div>
                     <div id="navbarMenuHeroB" class="navbar-menu">
                       <div class="navbar-end">
-                        <a class="navbar-item is-active" href="{% url 'ledger:home' %}">
+                         <a class="navbar-item" href="{% url 'ledger:home' %}"> 
                           Home
                         </a>
                         <a class="navbar-item" href="{% url 'ledger:add_employee' %}">
@@ -55,7 +63,7 @@
                             {% if user.is_authenticated %}
                             <a href=" {% url 'logout' %}">Logout</a>
                             {% else %}
-                            <a href=" {% url 'login' %}">Login</a>
+                            <a href=" {% url 'login' %}">Please Login</a>
                             {% endif %}
                         </span>
                       </div>
@@ -89,3 +97,6 @@
       </div>
     </footer>
 </html>
+
+
+  

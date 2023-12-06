@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block headding %}
+    <h1 class='title'>Welcome our to DayEarns!</h1>
+{% endblock headding %}
+
+
+{% block content %}
+
+    <form action='' method='post'>
+        {% csrf_token %}
+        <div class="table-responsive">
+            <table class="table table-primary">
+                {{ formClient | crispy }}
+
+            </table>
+            <input type='submit' value='Take'>
+            <input type='submit' onclick="window.location='{% url 'ledger:index' %}'; return false; " value='Cancel' >
+        </div>
+        
+    </form>
+
+
+    
+    
+{% endblock content %}
+
+
+{% block footer %}
+    <strong>Contact Us somewhere</strong>
+{% endblock footer %}
+ 

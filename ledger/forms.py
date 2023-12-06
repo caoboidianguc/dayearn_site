@@ -17,9 +17,8 @@ class ClientForm(forms.ModelForm):
     class Meta:
         """Meta definition for Clientform."""
         model = Khach
-        fields = ['full_name', 'phone','email', 'technician','services']
+        fields = ['full_name', 'phone', 'email', 'services']
         
-    # https://stackoverflow.com/questions/12449603/integrate-calendar-widget-in-django-app
     # https://stackoverflow.com/questions/38601/using-django-time-date-widgets-in-custom-form
 
     
@@ -27,7 +26,7 @@ class ServiceForm(forms.ModelForm):
     
     class Meta:
         model = Service
-        fields = ['dichVu','gia','time_serv']
+        fields = ['dichVu','gia']
 
 
 class TaiKhoanCreationForm(UserCreationForm):

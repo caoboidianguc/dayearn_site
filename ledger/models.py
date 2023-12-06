@@ -10,7 +10,6 @@ from django.urls import reverse
 class Technician(models.Model):
     name = models.CharField(max_length=25)
     phone = models.CharField(max_length=12)
-    # dskhach = models.ManyToManyField(settings.AUTH_USER_MODEL, through='Khach', related_name='tech')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     clients = models.ForeignKey("Khach", on_delete=models.CASCADE, null=True, related_name='client')
     
@@ -23,15 +22,14 @@ class Technician(models.Model):
 class Khach(models.Model):
     full_name = models.CharField(max_length=25)
     phone = models.CharField(max_length=12)
-    email = models.EmailField(max_length=35, null=True)
+    email = models.EmailField(max_length=35, null=True, blank=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
-    technician = models.ForeignKey(Technician, on_delete=models.CASCADE, null=True)
+    technician = models.ForeignKey(Technician, on_delete=models.CASCADE, null=True, blank=True)
     diem = models.PositiveIntegerField(default=0)
-    # ngay - inital first time come 
     ngay = models.DateTimeField(editable=False,auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    desc = models.TextField(max_length=250,blank=True)
-    services = models.ForeignKey("Service", on_delete=models.DO_NOTHING, null=True)
+    desc = models.TextField(max_length=250,blank=True, null=True)
+    services = models.ForeignKey("Service", on_delete=models.DO_NOTHING, null=True, blank=True)
     
     
     def __str__(self) -> str:
@@ -43,7 +41,6 @@ class Khach(models.Model):
 class Service(models.Model):
     dichVu = models.CharField(max_length=30)
     gia = models.FloatField()
-    time_serv = models.DurationField()
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     def __str__(self) -> str:
         return self.dichVu
