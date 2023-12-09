@@ -5,7 +5,6 @@ from django.urls import reverse
 
 
 
-# Create your models here.
     
 class Technician(models.Model):
     name = models.CharField(max_length=25)
@@ -20,23 +19,30 @@ class Technician(models.Model):
     
     
 class Khach(models.Model):
+    class Status(models.TextChoices):
+        online = "WebSite"
+        call = "Phone Call"
+        cancel = "Cancel"
+        arrived = "Arrived"
+        
     full_name = models.CharField(max_length=25)
     phone = models.CharField(max_length=12)
     email = models.EmailField(max_length=35, null=True, blank=True)
-    # owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     technician = models.ForeignKey(Technician, on_delete=models.CASCADE, null=True, blank=True)
     diem = models.PositiveIntegerField(default=0)
-    ngay = models.DateTimeField(editable=False,auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    ngaydau = models.DateTimeField(editable=False,auto_now_add=True)
+    ngayhen = models.DateField()
+    vaoluc = models.TimeField()
     desc = models.TextField(max_length=250,blank=True, null=True)
     services = models.ForeignKey("Service", on_delete=models.DO_NOTHING, null=True, blank=True)
-    
-    
+    comeBy = models.CharField(choices=Status.choices, max_length=12, default=Status.online)
+
     def __str__(self) -> str:
         return self.full_name
     def save(self, *args, **kwargs):
         self.diem += 1
         super().save(*args,**kwargs)
+    
     
 class Service(models.Model):
     dichVu = models.CharField(max_length=30)

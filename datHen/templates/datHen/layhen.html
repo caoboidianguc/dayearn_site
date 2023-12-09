@@ -2,9 +2,9 @@
 {% load crispy_forms_tags %}
 
 
-
 {% block headding %}
     <h1 class='title'>Reservation</h1>
+    
 {% endblock headding %}
 
 
@@ -19,7 +19,9 @@
             <input type='submit' value='Take'>
             <input type='submit' onclick="window.location='{% url 'ledger:index' %}'; return false; " value='Cancel' >
         </div>
-        
+        <div>
+            {% comment %} Ngay Hen: {{ formDatHen.ngayhen }} {% endcomment %}
+        </div>
     </form>
 {% endblock content %}
 
