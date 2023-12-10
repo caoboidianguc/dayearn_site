@@ -1,7 +1,7 @@
 from django import forms
-from .models import DatHen
 from datetime import timedelta, date
 from ledger.models import Khach
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class ChonNgay(forms.widgets.DateInput):
@@ -10,13 +10,16 @@ class ChonNgay(forms.widgets.DateInput):
     
 class DatHenFrom(forms.ModelForm):
 
-    ngayhen = forms.DateField(widget=ChonNgay(attrs={'min': date.today()}))
-    vaoluc = forms.TimeField(widget=ChonNgay(attrs={'type': 'time'}))
-    
+    day_comes = forms.DateField(widget=ChonNgay(attrs={'min': date.today()}))
+    time_at = forms.TimeField(widget=ChonNgay(attrs={'type': 'time'}))
+    email = forms.CharField(
+        required=False,
+        widget=forms.widgets.EmailInput(attrs={'placeholder':'Optional'}))
+    phone = PhoneNumberField()
     class Meta:
-        # model = DatHen
+        
         model = Khach
-        fields = ['full_name', 'phone', 'email', 'ngayhen', 'vaoluc']
+        fields = ['full_name', 'phone', 'email', 'day_comes', 'time_at', 'technician']
         
         
         

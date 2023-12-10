@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'djangobower',
     'api.apps.ApiConfig',
     'datHen.apps.DathenConfig',
+    'phonenumber_field',
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -127,7 +128,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+PHONENUMBER_DB_FORMAT = 'NATIONAL'
+PHONENUMBER_DEFAULT_REGION = 'US'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 

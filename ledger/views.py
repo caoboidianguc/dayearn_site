@@ -6,6 +6,7 @@ from django.views import View
 from .forms import ClientForm, TechForm, ServiceForm, TaiKhoanCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login
+from datetime import timedelta
 
 
 
@@ -71,6 +72,7 @@ class AddService(LoginRequiredMixin, View):
         if not form.is_valid():
             cont = {'form': form}
             return render(request, self.template, cont)
+        form.instance.thoiLuong = timedelta(minutes=45)
         ser = form.save(commit=False)
         ser.owner = self.request.user
         ser.save()

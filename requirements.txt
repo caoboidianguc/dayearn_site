@@ -6,3 +6,4 @@ crispy-bootstrap5
 django-scheduler
 djangorestframework
 django-bower
+phonenumber_field

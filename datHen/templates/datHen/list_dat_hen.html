@@ -9,7 +9,7 @@
 {% block content %}
     {% if khachHen %}
     {% for khach in khachHen %}
-        <div class='is-boxed'>{{ khach.full_name }} {{ khach.ngayhen }} {{ khach.vaoLuc }} </div>
+        <div class='is-boxed'>{{ khach.full_name }} {{ khach.day_comes }} {{ khach.time_at }} </div>
         {% endfor %}
 
     {% endif %}
