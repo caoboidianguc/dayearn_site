@@ -37,8 +37,9 @@
                 <nav class="navbar">
                   <div class="container">
                     <div class="navbar-brand">
+                      {% block nutChinh %}
                       <a class="navbar-item" href="{% url 'ledger:index' %}"><h1 class='title'>Home</h1></a>
-                        
+                      {% endblock nutChinh %}
                       <span class="navbar-burger burger" data-target="navbarMenuHeroB">
                         <span></span>
                         <span></span>

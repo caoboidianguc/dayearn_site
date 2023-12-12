@@ -1,16 +1,26 @@
 {% extends 'base.html' %}
 
+{% block nutChinh %}
+<a class="navbar-item" href="{% url 'datHen:schedule' %}"><h1 class='title'>Reserve</h1></a>
+{% endblock nutChinh %}
 
 {% block headding %}
     <h1 class='title'>Client's Schedule</h1>
+    {% if messages %} 
+    {% for tin in messages %} 
+    <li>{{ tin }}</li>
+    {% endfor %}
+    {% endif %}
+    
 {% endblock headding %}
 
 
 {% block content %}
     {% if khachHen %}
     {% for khach in khachHen %}
-    <div class='is-boxed'>
-        <div ><strong>{{ khach.full_name }}</strong> <span>On: {{ khach.day_comes }}</span> <span>At: {{ khach.time_at }}</span> </div>
+    <div class='box'>
+        <div ><strong>{{ khach.full_name }}</strong> <span>At: {{ khach.time_at }}</span> </div>
+        <p>Schedule: {{ khach.comeBy }}</p>
         Get: {% if khach.services %}
         {% for dichvu in khach.services.all %}
         <li>{{ dichvu }} </li>

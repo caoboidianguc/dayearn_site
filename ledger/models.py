@@ -36,7 +36,7 @@ class Khach(models.Model):
     day_comes = models.DateField()
     time_at = models.TimeField()
     desc = models.TextField(max_length=250,blank=True, null=True)
-    services = models.ManyToManyField("Service", null=True, blank=True, related_name="dichvu")
+    services = models.ManyToManyField("Service", blank=True, related_name="dichvu")
     comeBy = models.CharField(choices=Status.choices, max_length=12, default=Status.online)
 
 
