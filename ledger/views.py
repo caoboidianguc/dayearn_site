@@ -28,7 +28,7 @@ class AllServices(LoginRequiredMixin, ListView):
     
 class EmpCreate(LoginRequiredMixin, View):
     template = 'ledger/add_employee.html'
-    success_url = reverse_lazy('ledger:home')
+    success_url = reverse_lazy('ledger:index')
     def get(self,request):
         form = TechForm()
         contx = {'form': form}
@@ -79,11 +79,3 @@ class AddService(LoginRequiredMixin, View):
         form.save_m2m
         return redirect(self.success_url)
     
-class CustomerVisit(View):
-    template = "thunhap/home.html"
-    def get(self, request):
-        return render(request, self.template)
-    def post(self, request):
-        pass
-
-

@@ -37,11 +37,8 @@
                 <nav class="navbar">
                   <div class="container">
                     <div class="navbar-brand">
-                      <a class="navbar-item" href="{% url 'ledger:index' %}">
-                        {% block headding %}
+                      <a class="navbar-item" href="{% url 'ledger:index' %}"><h1 class='title'>Home</h1></a>
                         
-                        {% endblock headding %}
-                      </a>
                       <span class="navbar-burger burger" data-target="navbarMenuHeroB">
                         <span></span>
                         <span></span>
@@ -50,8 +47,8 @@
                     </div>
                     <div id="navbarMenuHeroB" class="navbar-menu">
                       <div class="navbar-end">
-                         <a class="navbar-item" href="{% url 'ledger:home' %}"> 
-                          Home
+                         <a class="navbar-item" href="{% url 'datHen:listHen' %}"> 
+                          Customers
                         </a>
                         <a class="navbar-item" href="{% url 'ledger:add_employee' %}">
                           Add Employee
@@ -76,6 +73,11 @@
             </section>
         </section>
     </a>
+
+    {% block headding %}
+                        
+    {% endblock headding %}
+                      
         <div class="container">
             
                 {% block content %}

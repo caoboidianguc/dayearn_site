@@ -19,7 +19,7 @@ class DatHenFrom(forms.ModelForm):
     class Meta:
         
         model = Khach
-        fields = ['full_name', 'phone', 'email', 'day_comes', 'time_at', 'technician']
+        fields = ['full_name', 'phone', 'email', 'day_comes', 'time_at', 'services', 'technician']
         
         
         

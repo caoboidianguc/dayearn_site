@@ -2,14 +2,21 @@
 
 
 {% block headding %}
-    <h1 class='title'>Clients Scheduled</h1>
+    <h1 class='title'>Client's Schedule</h1>
 {% endblock headding %}
 
 
 {% block content %}
     {% if khachHen %}
     {% for khach in khachHen %}
-        <div class='is-boxed'>{{ khach.full_name }} {{ khach.day_comes }} {{ khach.time_at }} </div>
+    <div class='is-boxed'>
+        <div ><strong>{{ khach.full_name }}</strong> <span>On: {{ khach.day_comes }}</span> <span>At: {{ khach.time_at }}</span> </div>
+        Get: {% if khach.services %}
+        {% for dichvu in khach.services.all %}
+        <li>{{ dichvu }} </li>
+        {% endfor %}
+        {% endif %}       
+    </div>
         {% endfor %}
 
     {% endif %}

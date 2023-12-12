@@ -1,11 +1,11 @@
 from django import forms
 from .models import Technician, Khach, Service
 from django.contrib.auth.forms import UserCreationForm
-
+from phonenumber_field.formfields import PhoneNumberField
 
 
 class TechForm(forms.ModelForm):
-    
+    phone = PhoneNumberField()
     class Meta:
         model = Technician
         fields = ["name","phone"]

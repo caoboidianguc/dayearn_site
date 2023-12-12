@@ -8,9 +8,11 @@ from phonenumber_field.modelfields import PhoneNumberField
     
 class Technician(models.Model):
     name = models.CharField(max_length=25)
-    phone = models.CharField(max_length=12)
+    phone = PhoneNumberField(null=False, blank=False)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     clients = models.ForeignKey("Khach", on_delete=models.CASCADE, null=True, related_name='client')
+    isWork = models.BooleanField(default=False)
+    
     
     
     def __str__(self) -> str:
@@ -34,8 +36,9 @@ class Khach(models.Model):
     day_comes = models.DateField()
     time_at = models.TimeField()
     desc = models.TextField(max_length=250,blank=True, null=True)
-    services = models.ForeignKey("Service", on_delete=models.DO_NOTHING, null=True, blank=True)
+    services = models.ManyToManyField("Service", null=True, blank=True, related_name="dichvu")
     comeBy = models.CharField(choices=Status.choices, max_length=12, default=Status.online)
+
 
     def __str__(self) -> str:
         return self.full_name
