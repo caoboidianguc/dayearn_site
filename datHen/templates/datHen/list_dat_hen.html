@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block nutChinh %}
-<a class="navbar-item" href="{% url 'datHen:schedule' %}"><h1 class='title'>Reserve</h1></a>
+<a class="navbar-item" href="{% url 'datHen:schedule' %}"><h1 class='title'>New Client</h1></a>
+<strong>|</strong>
+<a class="navbar-item" href="{% url 'datHen:exist_client' %}"><h1 class='title'>Been here</h1></a>
 {% endblock nutChinh %}
 
 {% block headding %}

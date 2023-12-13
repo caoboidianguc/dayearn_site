@@ -14,7 +14,7 @@ class DatHenFrom(forms.ModelForm):
     time_at = forms.TimeField(widget=ChonNgay(attrs={'type': 'time'}))
     email = forms.CharField(
         required=False,
-        widget=forms.widgets.EmailInput(attrs={'placeholder':'Optional'}))
+        widget=forms.widgets.EmailInput(attrs={'placeholder':'Option'}))
     phone = PhoneNumberField()
     class Meta:
         
@@ -22,5 +22,10 @@ class DatHenFrom(forms.ModelForm):
         fields = ['full_name', 'phone', 'email', 'day_comes', 'time_at', 'services', 'technician']
         
         
+
+class ExistClientForm(forms.ModelForm):
+    class Meta:
+        model = Khach
+        fields = ['full_name', 'phone']
         
         

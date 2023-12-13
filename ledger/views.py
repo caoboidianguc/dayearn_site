@@ -7,6 +7,7 @@ from .forms import ClientForm, TechForm, ServiceForm, TaiKhoanCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from datetime import timedelta
+from django.contrib import messages
 
 
 
@@ -28,7 +29,7 @@ class AllServices(LoginRequiredMixin, ListView):
     
 class EmpCreate(LoginRequiredMixin, View):
     template = 'ledger/add_employee.html'
-    success_url = reverse_lazy('ledger:index')
+    success_url = reverse_lazy('ledger:add_employee')
     def get(self,request):
         form = TechForm()
         contx = {'form': form}
@@ -42,6 +43,7 @@ class EmpCreate(LoginRequiredMixin, View):
         emp.owner = self.request.user
         emp.save()
         form.save_m2m
+        messages.success(request, f"{form.instance.name} was created successfully!")
         return redirect(self.success_url)
     
     
@@ -79,3 +81,9 @@ class AddService(LoginRequiredMixin, View):
         form.save_m2m
         return redirect(self.success_url)
     
+class CustomerVisit(View):
+    template = "thunhap/home.html"
+    def get(self, request):
+        return render(request, self.template)
+    def post(self, request):
+        pass

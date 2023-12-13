@@ -8,11 +8,12 @@ from phonenumber_field.modelfields import PhoneNumberField
     
 class Technician(models.Model):
     name = models.CharField(max_length=25)
-    phone = PhoneNumberField(null=False, blank=False)
+    phone = PhoneNumberField()
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     clients = models.ForeignKey("Khach", on_delete=models.CASCADE, null=True, related_name='client')
     isWork = models.BooleanField(default=False)
-    
+    class Meta:
+        unique_together = ('name','phone',)
     
     
     def __str__(self) -> str:
@@ -28,7 +29,7 @@ class Khach(models.Model):
         arrived = "Arrived"
         
     full_name = models.CharField(max_length=25)
-    phone = PhoneNumberField(null=False, blank=False)
+    phone = PhoneNumberField()
     email = models.EmailField(max_length=35, null=True, blank=True)
     technician = models.ForeignKey(Technician, on_delete=models.CASCADE, null=True, blank=True)
     diem = models.PositiveIntegerField(default=0)
@@ -38,7 +39,8 @@ class Khach(models.Model):
     desc = models.TextField(max_length=250,blank=True, null=True)
     services = models.ManyToManyField("Service", blank=True, related_name="dichvu")
     comeBy = models.CharField(choices=Status.choices, max_length=12, default=Status.online)
-
+    class Meta:
+        unique_together = ('full_name','phone',)
 
     def __str__(self) -> str:
         return self.full_name

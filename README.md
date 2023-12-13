@@ -24,5 +24,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 PHONENUMBER_DEFAULT_REGION = 'US'
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'hoadambutxinh@gmail.com'
+EMAIL_HOST_PASSWORD = 'seztdjfrcdbcykvp'
+
+
 Add to TEMPLATE_CONTEXT_PROCESSORS:
 "django.template.context_processors.request"

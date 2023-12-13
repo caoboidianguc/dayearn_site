@@ -1,11 +1,12 @@
 from django.urls import path, re_path, include
-from ledger.views import AllEmployee, EmpCreate, TaoTaiKhoan, AllServices, AddService
+from ledger.views import AllEmployee, EmpCreate, TaoTaiKhoan, AllServices, AddService, CustomerVisit
 from django.contrib.auth import views as xem
 
 
 app_name = 'ledger'
 urlpatterns = [
-    path('', AllEmployee.as_view(), name="index"),
+    path('', CustomerVisit.as_view(), name="index"),
+    path('ledger/', AllEmployee.as_view(), name="home"),
     path('ledger/add_employee/', EmpCreate.as_view(), name="add_employee"),
     path('ledger/register/', TaoTaiKhoan.as_view(), name="register"),
     path('ledger/services/', AllServices.as_view(), name="services"),
