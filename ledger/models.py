@@ -24,9 +24,7 @@ class Technician(models.Model):
 class Khach(models.Model):
     class Status(models.TextChoices):
         online = "WebSite"
-        call = "Phone Call"
         cancel = "Cancel"
-        arrived = "Arrived"
         
     full_name = models.CharField(max_length=25)
     phone = PhoneNumberField()
@@ -38,7 +36,7 @@ class Khach(models.Model):
     time_at = models.TimeField()
     desc = models.TextField(max_length=250,blank=True, null=True)
     services = models.ManyToManyField("Service", blank=True, related_name="dichvu")
-    comeBy = models.CharField(choices=Status.choices, max_length=12, default=Status.online)
+    status = models.CharField(choices=Status.choices, max_length=12, default=Status.online)
     class Meta:
         unique_together = ('full_name','phone',)
 

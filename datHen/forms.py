@@ -1,6 +1,6 @@
 from django import forms
 from datetime import timedelta, date
-from ledger.models import Khach
+from ledger.models import Khach, Service
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -16,16 +16,19 @@ class DatHenFrom(forms.ModelForm):
         required=False,
         widget=forms.widgets.EmailInput(attrs={'placeholder':'Option'}))
     phone = PhoneNumberField()
+    services = forms.ModelMultipleChoiceField(queryset=Service.objects.all() ,widget=forms.CheckboxSelectMultiple())
+    
     class Meta:
         
         model = Khach
-        fields = ['full_name', 'phone', 'email', 'day_comes', 'time_at', 'services', 'technician']
+        fields = ['full_name', 'phone', 'email', 'day_comes', 'time_at', 'services', 'technician', 'status']
         
         
+
 
 class ExistClientForm(forms.ModelForm):
     class Meta:
         model = Khach
-        fields = ['full_name', 'phone']
+        fields = ['phone']
         
         

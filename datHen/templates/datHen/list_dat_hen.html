@@ -22,7 +22,7 @@
     {% for khach in khachHen %}
     <div class='box'>
         <div ><strong>{{ khach.full_name }}</strong> <span>At: {{ khach.time_at }}</span> </div>
-        <p>Schedule: {{ khach.comeBy }}</p>
+        <p>Schedule: <b>{{ khach.status }} </b></p>
         Get: {% if khach.services %}
         {% for dichvu in khach.services.all %}
         <li>{{ dichvu }} </li>

@@ -25,13 +25,13 @@ class ExistClientHen(View):
     template = 'datHen/exist_client_hen.html'
     success_url = reverse_lazy('datHen:listHen')
     def get(self, request):
-        khach = Khach.objects.filter(full_name=request.GET.get('full_name'), phone=request.GET.get('phone'))
+        khach = Khach.objects.filter(phone=request.GET.get('phone'))
         form = ExistClientForm()
         cont = {'formDatHen': form, 'khach': khach}
         return render(request, self.template, cont)
     
 class ExistFound(View):
-    template = 'datHen/exist_found.html'
+    template = 'datHen/layhen.html'
     success_url = reverse_lazy('datHen:listHen')
     chuDe = "Dayearns Confirm schedule"
     def get(self, request, pk):
@@ -69,6 +69,7 @@ class KhachLayHen(View):
         if not form.is_valid():
             cont = {'formDatHen': form}
             return render(request, self.template, cont)
+        
         khac = form.save(commit=False)
         khac.save()
         form.save_m2m()
