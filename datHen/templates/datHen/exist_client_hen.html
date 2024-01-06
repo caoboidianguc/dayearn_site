@@ -31,7 +31,8 @@
         {% if khach %}
         Found :
         {% for mot in khach.all %}
-        <li><a href="{% url 'datHen:exist_found' mot.id %}"> {{ mot }} </a></li>
+        <li><a href="{{ mot.get_absolute_url }}"> {{ mot }} </a></li>
+        {% comment %} <li><a href="{% url 'datHen:khach_detail' mot.id %}"> {{ mot }} </a></li> {% endcomment %}
          {% endfor %}
          {% else %} <p>None found</p>
         {% endif %}

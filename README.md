@@ -33,3 +33,12 @@ EMAIL_HOST_PASSWORD = 'seztdjfrcdbcykvp'
 
 Add to TEMPLATE_CONTEXT_PROCESSORS:
 "django.template.context_processors.request"
+
+<!-- for PostgreSQL specific model fields -->
+pip install psycopg2
+
+<!-- Bad
+<a href="/language/category/product/{{product.pk}}">Link</a>
+
+<-- Good -->
+<!-- <a href="{{product.get_absolute_url}}">Link</a> -->

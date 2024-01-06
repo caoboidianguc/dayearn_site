@@ -10,13 +10,12 @@ from datetime import timedelta
 from django.contrib import messages
 
 
-
-
-class AllEmployee(LoginRequiredMixin, ListView):
+class AllEmployee(ListView):
     template = 'ledger/index.html'
     def get(self,request):
-        employee = Technician.objects.filter(owner=request.user)
-        cont = {'employees': employee}
+        employee = Technician.objects.all()
+        # employee = Technician.objects.filter(owner=request.user)
+        cont = {'employees': employee }
         return render(request, self.template, cont)
     
 class AllServices(LoginRequiredMixin, ListView):
@@ -74,7 +73,7 @@ class AddService(LoginRequiredMixin, View):
         if not form.is_valid():
             cont = {'form': form}
             return render(request, self.template, cont)
-        form.instance.thoiLuong = timedelta(minutes=45)
+        # form.instance.thoiGian = timedelta(minutes=45)
         ser = form.save(commit=False)
         ser.owner = self.request.user
         ser.save()

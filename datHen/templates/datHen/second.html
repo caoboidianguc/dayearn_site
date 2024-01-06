@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block nutChinh %}
+{% comment %} <a class="navbar-item" href="{% url 'datHen:schedule' %}"><h1 class='title'>New Client</h1></a>
+<strong>|</strong>
+<a class="navbar-item" href="{% url 'datHen:exist_client' %}"><h1 class='title'>Been here</h1></a> {% endcomment %}
+{% endblock nutChinh %}
+
+{% block headding %}
+    <h1 class='title'>Client's Schedule Second Step</h1>
+    {% if messages %} 
+    {% for tin in messages %} 
+    <li>{{ tin }}</li>
+    {% endfor %}
+    {% endif %}
+{% endblock headding %}
+
+
+{% block content %}
+
+    <h1>Technician: {{ techDetail.name }}</h1>
+    <p>All Clients:</p>
+    {% for khach in hnay %}
+    <li>{{ khach.time_at }} Today, with : {{ khach.get_services }} For:{{ khach.get_time_done }} minute</li>
+    {% endfor %}
+    <form action='' method='get'>
+        {% csrf_token %}
+        <div class="table-responsive">
+            <div class="form-day">
+                {{ secondForm.day_comes | as_crispy_field }}
+                
+              </div>
+                 
+            <input type='submit' value='Ngay Trong'>
+            <input type='submit' onclick="window.location='{% url 'ledger:index' %}'; return false; " value='Cancel' >
+        </div>
+        
+    </form>
+
+    <div class="khach_da_hen">
+        {% for khach in hen %}
+    <li><strong>{{ khach.time_at }}</strong> on {{ khach.day_comes }} , Done at: {{ khach.get_done_at }}</li>
+    {% endfor %}
+        
+      </div>
+{% endblock content %}
+
+
+
+{% block footer %}
+    <strong>Contact Us somewhere</strong>
+{% endblock footer %}
+ 
